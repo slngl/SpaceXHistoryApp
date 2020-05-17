@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintL"
+        android:layout_width="359dp"
+
+        android:layout_height="340dp"
+        android:background="@drawable/kivrimli_kenarlik"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="47dp">
+
+        <TextView
+            android:id="@+id/tvDTitle"
+            android:layout_width="200dp"
+            android:layout_height="28dp"
+            android:text="@string/title"
+            android:textColor="#040404"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvDid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.654"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.318" />
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="#3AE8E2E2"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/tvDdate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.304"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDTitle"
+            app:layout_constraintVertical_bias="0.216"></LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDid"
+            android:layout_width="54dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/iidentifier"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDdate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvDdate" />
+
+        <TextView
+            android:id="@+id/tvDdate"
+            android:layout_width="191dp"
+            android:layout_height="22dp"
+            android:text="@string/event_date_utc"
+            android:textColor="#040404"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.836"
+            app:layout_constraintStart_toEndOf="@+id/tvDid"
+            tools:layout_editor_absoluteY="51dp" />
+
+        <TextView
+            android:id="@+id/tvDdetails"
+            android:layout_width="325dp"
+            android:layout_height="157dp"
+            android:text="@string/details"
+            android:textColor="#7A7676"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.529"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDdate"
+            app:layout_constraintVertical_bias="0.218" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

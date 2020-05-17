@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">History1</string>
+    <string name="title">Title</string>
+    <string name="details">details</string>
+    <string name="event_date_utc">event_date_utc</string>
+    <string name="iidentifier">iidentifier</string>
+</resources>
