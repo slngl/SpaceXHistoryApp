@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class HistoryAdapter(
-    historyList: List<HistoryData>?):RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+    historyList: List<HistoryData>? , var  onHistoryListener : OnHistoryListener):RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
 
     var historyList=historyList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        return  HistoryViewHolder(parent)
+        return  HistoryViewHolder(parent,onHistoryListener)
     }
 
     override fun getItemCount(): Int {
@@ -24,10 +24,12 @@ class HistoryAdapter(
         holder.bindTo(historyList!!.get(position))
 
     }
-
-    inner class HistoryViewHolder(viewGroup: ViewGroup):RecyclerView
-    .ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.tek_satir,viewGroup,false)) {
-
+    interface OnHistoryListener{
+        fun onHistoryClick(position:Int)
+    }
+    inner class HistoryViewHolder(viewGroup: ViewGroup, var onHistoryListener: OnHistoryListener):RecyclerView
+    .ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.tek_satir,viewGroup,false)), View.OnClickListener{
+        lateinit var onClickListener:View.OnClickListener
         var satir=viewGroup as RecyclerView
         private val textTitle=itemView.findViewById<TextView>(R.id.tvTitle)
         private val textDate=itemView.findViewById<TextView>(R.id.tvDate)
@@ -38,17 +40,13 @@ class HistoryAdapter(
             textDate.text=historyData.event_date_utc
             textDetails.text=historyData.details
 
-            itemView.setOnClickListener {
-
-                val intent= Intent(it.context,DetailActivity::class.java)
-                intent.putExtra("flight_number",historyData.fligth_number)
-                it.context.startActivity(intent)
-
-            }
+            itemView.setOnClickListener(this)
         }
-        interface OnHistoryListener{
-            onHistoryClick(position:Int)
+
+        override fun onClick(v: View?) {
+            onHistoryListener.onHistoryClick(adapterPosition)
         }
+
     }
 
 

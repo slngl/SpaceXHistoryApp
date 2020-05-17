@@ -10,22 +10,23 @@ import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(), HistoryAdapter.OnHistoryListener {
+    lateinit var historyList:List<HistoryData>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         recyclerView.layoutManager=LinearLayoutManager(this)
         RetrofitClient.getClient().create(HistoryService::class.java).getHistory()
-            .enqueue(object :retrofit2.Callback<List<HistoryData>>{
+            .enqueue(object :retrofit2.Callback<List<HistoryData>>,
+                HistoryAdapter.OnHistoryListener {
 
                 override fun onResponse(
                     call: Call<List<HistoryData>>,
                     response: Response<List<HistoryData>>
                 ) {
-                    val historyList=response.body()
-                    val myadapter=HistoryAdapter(historyList)
+                    historyList= response.body()!!
+                    val myadapter=HistoryAdapter(historyList,this)
 
                     recyclerView.adapter=myadapter           //HistoryAdapter(historyList)
                     Toast.makeText(this@MainActivity,"onResponse",Toast.LENGTH_LONG).show()
@@ -38,14 +39,30 @@ class MainActivity : AppCompatActivity() {
                     Log.e("HATA", call?.request()?.url()?.toString())
                 }
 
-                })
+                override fun onHistoryClick(position: Int) {
+                    historyList.get(position)
+                    intent=Intent(this@MainActivity,DetailActivity::class.java)
+                    startActivity(intent)
+                    Log.e("ilkonHistory", position.toString())
+                }
+
+            })
     }
 
     private fun historyItemClicked(historyData: HistoryData) {
+        Log.e("iincionHistory", historyData.toString())
         val detailActivityIntent=Intent(this,DetailActivity::class.java)
         detailActivityIntent.putExtra("flight_number",historyData.fligth_number)
         startActivity(detailActivityIntent)
 
     }
+
+    override fun onHistoryClick(position: Int) {
+        historyList.get(position)
+        intent=Intent(this@MainActivity,DetailActivity::class.java)
+        intent.putExtra("flight_number",historyList.get(position).fligth_number)
+        startActivity(intent)
+    }
+
 
 }
