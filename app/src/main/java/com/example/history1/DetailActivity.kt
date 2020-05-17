@@ -10,7 +10,10 @@ import retrofit2.Call
 import retrofit2.Response
 
 class DetailActivity : AppCompatActivity() {
-    val fN=6
+
+        var gelenIntent=intent
+        var fN:Int = intent.extras?.get("flight_number").toString().toInt()
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail2)
@@ -38,27 +41,6 @@ class DetailActivity : AppCompatActivity() {
 
         })
 
-/*
-        RetrofitClient.getClient().create(HistoryService2::class.java).getHistory2(6)
-            .enqueue(object : Call<HistoryData>{
-
-                override fun onResponse(
-                    call: Call<List<HistoryData>>,
-                    response: Response<List<HistoryData>>
-                ) {
-                    val historyList=response.body()
-                    Toast.makeText(this@DetailActivity,"SUCCES", Toast.LENGTH_LONG).show()
-                    Log.e("SURADAAA", call?.request()?.url()?.toString())
-
-                }
-
-                override fun onFailure(call: Call<List<HistoryData>>, t: Throwable) {
-                    Toast.makeText(this@DetailActivity,"Failure", Toast.LENGTH_LONG).show()
-                    Log.e("BURADAAA HATALI", call?.request()?.url()?.toString())
-                }
-
-            })
-    }*/
 
 
 
