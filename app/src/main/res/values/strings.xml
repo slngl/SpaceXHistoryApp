@@ -4,4 +4,7 @@
     <string name="details">details</string>
     <string name="event_date_utc">event_date_utc</string>
     <string name="iidentifier">iidentifier</string>
+    <string name="wikipedia">wikipedia</string>
+    <string name="article">article</string>
+    <string name="reddit">reddit</string>
 </resources>

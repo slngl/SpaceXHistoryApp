@@ -10,59 +10,35 @@ import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity(), HistoryAdapter.OnHistoryListener {
+class MainActivity : AppCompatActivity(){
     lateinit var historyList:List<HistoryData>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        recyclerView.layoutManager=LinearLayoutManager(this)
         RetrofitClient.getClient().create(HistoryService::class.java).getHistory()
-            .enqueue(object :retrofit2.Callback<List<HistoryData>>,
-                HistoryAdapter.OnHistoryListener {
+            .enqueue(object :retrofit2.Callback<List<HistoryData>>{
 
                 override fun onResponse(
                     call: Call<List<HistoryData>>,
                     response: Response<List<HistoryData>>
                 ) {
                     historyList= response.body()!!
-                    val myadapter=HistoryAdapter(historyList,this)
-
-                    recyclerView.adapter=myadapter           //HistoryAdapter(historyList)
-                    Toast.makeText(this@MainActivity,"onResponse",Toast.LENGTH_LONG).show()
-                    Log.e("BASARILI", call?.request()?.url()?.toString())
+                    val myadapter=HistoryAdapter(historyList)
+                    recyclerView.adapter=myadapter
+                    recyclerView.layoutManager=LinearLayoutManager(this@MainActivity,LinearLayoutManager.VERTICAL,false)//true verirsek ters sıralama yapacak
+                    Toast.makeText(this@MainActivity,"Bağlantı Sağlandı",Toast.LENGTH_LONG).show()
 
                 }
 
                 override fun onFailure(call: Call<List<HistoryData>>, t: Throwable) {
-                    Toast.makeText(this@MainActivity,"Failure",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@MainActivity,"Bağlantı Sağlanamadı",Toast.LENGTH_LONG).show()
                     Log.e("HATA", call?.request()?.url()?.toString())
-                }
-
-                override fun onHistoryClick(position: Int) {
-                    historyList.get(position)
-                    intent=Intent(this@MainActivity,DetailActivity::class.java)
-                    startActivity(intent)
-                    Log.e("ilkonHistory", position.toString())
                 }
 
             })
     }
 
-    private fun historyItemClicked(historyData: HistoryData) {
-        Log.e("iincionHistory", historyData.toString())
-        val detailActivityIntent=Intent(this,DetailActivity::class.java)
-        detailActivityIntent.putExtra("flight_number",historyData.fligth_number)
-        startActivity(detailActivityIntent)
-
-    }
-
-    override fun onHistoryClick(position: Int) {
-        historyList.get(position)
-        intent=Intent(this@MainActivity,DetailActivity::class.java)
-        intent.putExtra("flight_number",historyList.get(position).fligth_number)
-        startActivity(intent)
-    }
 
 
 }

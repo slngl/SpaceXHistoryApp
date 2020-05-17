@@ -1,19 +1,24 @@
 package com.example.history1
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class HistoryAdapter(
-    historyList: List<HistoryData>? , var  onHistoryListener : OnHistoryListener):RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+    var historyList: List<HistoryData>? ):RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
 
-    var historyList=historyList
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        return  HistoryViewHolder(parent,onHistoryListener)
+        var inflater=LayoutInflater.from(parent.context)
+        var tekSatirHistory=inflater.inflate(R.layout.tek_satir,parent,false)
+
+        return  HistoryViewHolder(tekSatirHistory)
     }
 
     override fun getItemCount(): Int {
@@ -21,30 +26,32 @@ class HistoryAdapter(
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.bindTo(historyList!!.get(position))
-
+        var tHistory = historyList?.get(position)
+        holder?.setData(tHistory, position)
     }
-    interface OnHistoryListener{
-        fun onHistoryClick(position:Int)
-    }
-    inner class HistoryViewHolder(viewGroup: ViewGroup, var onHistoryListener: OnHistoryListener):RecyclerView
-    .ViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.tek_satir,viewGroup,false)), View.OnClickListener{
-        lateinit var onClickListener:View.OnClickListener
-        var satir=viewGroup as RecyclerView
-        private val textTitle=itemView.findViewById<TextView>(R.id.tvTitle)
-        private val textDate=itemView.findViewById<TextView>(R.id.tvDate)
-        private val textDetails=itemView.findViewById<TextView>(R.id.tvDetail)
 
-        fun bindTo(historyData: HistoryData){
-            textTitle.text=historyData.title
-            textDate.text=historyData.event_date_utc
-            textDetails.text=historyData.details
+    inner class HistoryViewHolder(viewGroup: View):RecyclerView
+    .ViewHolder(viewGroup){
 
-            itemView.setOnClickListener(this)
-        }
+        var satir=viewGroup as CardView
+         val textTitle=itemView.findViewById<TextView>(R.id.tvTitle)
+         val textDate=itemView.findViewById<TextView>(R.id.tvDate)
+        val textDetails=itemView.findViewById<TextView>(R.id.tvDetail)
 
-        override fun onClick(v: View?) {
-            onHistoryListener.onHistoryClick(adapterPosition)
+        fun setData(tHistory:HistoryData?, position: Int){
+            textTitle.text=tHistory?.title
+            textDetails.text=tHistory?.details
+            textDate.text=tHistory?.event_date_utc
+            if(tHistory?.flight_number!! >0 ) {      // DetailActivity'de Flight_number'a göre sorgu yaptığımız için,
+                satir.setOnClickListener { v ->        // eğer flight_number yoksa DetailActivity'e bağlanmıyor.Bağlantı yapmaya çalışmaması için kontrol koydum
+
+                    var intent = Intent(v.context, DetailActivity::class.java)
+                    intent.putExtra("flight_number", tHistory?.flight_number)
+                    v.context.startActivity(intent)
+
+                }
+            }
+
         }
 
     }

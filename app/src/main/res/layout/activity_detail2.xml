@@ -1,84 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#2FDFDADA">
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintL"
-        android:layout_width="359dp"
-
-        android:layout_height="340dp"
+        android:layout_width="303dp"
+        android:layout_height="309dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/kivrimli_kenarlik"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="26dp"
-        tools:layout_editor_absoluteY="47dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/tvReddit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="62dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="6dp"
+            android:text="@string/reddit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvArticle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvArticle"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/tvArticle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="6dp"
+            android:text="@string/article"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvWiki"
+            app:layout_constraintTop_toTopOf="@+id/tvWiki"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tvDTitle"
             android:layout_width="200dp"
             android:layout_height="28dp"
+            android:layout_marginTop="24dp"
             android:text="@string/title"
             android:textColor="#040404"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tvDid"
+            app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.654"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.318" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:layout_width="350dp"
+            android:id="@+id/linearLayout2"
+            android:layout_width="280dp"
             android:layout_height="3dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="#3AE8E2E2"
+            android:background="#67E8E2E2"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/tvDdate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.304"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDTitle"
-            app:layout_constraintVertical_bias="0.216"></LinearLayout>
+            app:layout_constraintVertical_bias="0.214"></LinearLayout>
 
         <TextView
             android:id="@+id/tvDid"
-            android:layout_width="54dp"
-            android:layout_height="23dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
             android:text="@string/iidentifier"
             android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="@+id/tvDdate"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvDdate"
+            app:layout_constraintHorizontal_bias="0.275"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvDdate" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDTitle"
+            app:layout_constraintVertical_bias="0.145" />
 
         <TextView
             android:id="@+id/tvDdate"
-            android:layout_width="191dp"
+            android:layout_width="175dp"
             android:layout_height="22dp"
             android:text="@string/event_date_utc"
             android:textColor="#040404"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDid"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.836"
-            app:layout_constraintStart_toEndOf="@+id/tvDid"
-            tools:layout_editor_absoluteY="51dp" />
+            app:layout_constraintTop_toTopOf="@+id/tvDid" />
 
         <TextView
             android:id="@+id/tvDdetails"
-            android:layout_width="325dp"
-            android:layout_height="157dp"
+            android:layout_width="261dp"
+            android:layout_height="118dp"
             android:text="@string/details"
             android:textColor="#7A7676"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.529"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDdate"
-            app:layout_constraintVertical_bias="0.218" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDid" />
+
+        <TextView
+            android:id="@+id/tvWiki"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="52dp"
+            android:layout_marginBottom="6dp"
+            android:text="@string/wikipedia"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

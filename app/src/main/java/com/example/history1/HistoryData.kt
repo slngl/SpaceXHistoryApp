@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 
 data class HistoryData(val links : Links,
                        val details: String,
-                       val fligth_number:Int,
+                       val flight_number:Int,
                        val event_date_utc:String,
                        val title:String,
                        var id:Int) {
