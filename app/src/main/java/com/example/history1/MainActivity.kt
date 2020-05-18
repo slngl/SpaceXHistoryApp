@@ -27,13 +27,11 @@ class MainActivity : AppCompatActivity(){
                     val myadapter=HistoryAdapter(historyList)
                     recyclerView.adapter=myadapter
                     recyclerView.layoutManager=LinearLayoutManager(this@MainActivity,LinearLayoutManager.VERTICAL,false)//true verirsek ters sıralama yapacak
-                    Toast.makeText(this@MainActivity,"Bağlantı Sağlandı",Toast.LENGTH_LONG).show()
 
                 }
 
                 override fun onFailure(call: Call<List<HistoryData>>, t: Throwable) {
                     Toast.makeText(this@MainActivity,"Bağlantı Sağlanamadı",Toast.LENGTH_LONG).show()
-                    Log.e("HATA", call?.request()?.url()?.toString())
                 }
 
             })

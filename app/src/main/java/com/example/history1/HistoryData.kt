@@ -9,7 +9,7 @@ data class HistoryData(val links : Links,
                        val flight_number:Int,
                        val event_date_utc:String,
                        val title:String,
-                       var id:Int) {
+                       val id:Int) {
 
     class Links {
         @Expose

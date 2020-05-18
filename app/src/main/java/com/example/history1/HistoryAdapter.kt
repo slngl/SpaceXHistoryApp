@@ -43,7 +43,11 @@ class HistoryAdapter(
             textDetails.text=tHistory?.details
             textDate.text=tHistory?.event_date_utc
             if(tHistory?.flight_number!! >0 ) {      // DetailActivity'de Flight_number'a göre sorgu yaptığımız için,
-                satir.setOnClickListener { v ->        // eğer flight_number yoksa DetailActivity'e bağlanmıyor.Bağlantı yapmaya çalışmaması için kontrol koydum
+                // eğer flight_number yoksa DetailActivity'e bağlanmıyor.Bağlantı yapmaya çalışmaması için kontrol koydum.
+
+                //id=10 ve id=13 flight_number=null olmasına rağmen başka id'nin detailActivity'si açılıyor ??
+                
+                satir.setOnClickListener { v ->        
 
                     var intent = Intent(v.context, DetailActivity::class.java)
                     intent.putExtra("flight_number", tHistory?.flight_number)

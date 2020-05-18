@@ -4,21 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2FDFDADA">
+    android:background="#5BB8B1B1">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/lt" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:text="Flight Details"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/imgBack"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintL"
         android:layout_width="303dp"
         android:layout_height="309dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="104dp"
         android:background="@drawable/kivrimli_kenarlik"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="2dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="273dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="6dp"
+            android:background="#5BB8B1B1"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvArticle"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tvReddit"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tvReddit"
@@ -31,8 +75,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvArticle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tvArticle"
-            android:focusable="true" />
+            app:layout_constraintTop_toTopOf="@+id/tvArticle" />
 
         <TextView
             android:id="@+id/tvArticle"
@@ -51,7 +94,6 @@
             android:layout_width="200dp"
             android:layout_height="28dp"
             android:layout_marginTop="24dp"
-            android:text="@string/title"
             android:textColor="#040404"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -65,20 +107,20 @@
             android:id="@+id/linearLayout2"
             android:layout_width="280dp"
             android:layout_height="3dp"
-            android:background="#67E8E2E2"
+            android:layout_marginEnd="8dp"
+            android:background="#5BB8B1B1"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/tvDdate"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.913"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDTitle"
-            app:layout_constraintVertical_bias="0.214"></LinearLayout>
+            app:layout_constraintVertical_bias="0.451"></LinearLayout>
 
         <TextView
             android:id="@+id/tvDid"
             android:layout_width="70dp"
             android:layout_height="20dp"
-            android:text="@string/iidentifier"
             android:textColor="#000000"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -92,7 +134,6 @@
             android:id="@+id/tvDdate"
             android:layout_width="175dp"
             android:layout_height="22dp"
-            android:text="@string/event_date_utc"
             android:textColor="#040404"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="@+id/tvDid"
@@ -102,8 +143,8 @@
         <TextView
             android:id="@+id/tvDdetails"
             android:layout_width="261dp"
-            android:layout_height="118dp"
-            android:text="@string/details"
+            android:layout_height="150dp"
+            android:layout_marginBottom="19dp"
             android:textColor="#7A7676"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -120,6 +161,20 @@
             android:text="@string/wikipedia"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:layout_width="2dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="272dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="6dp"
+            android:background="#5BB8B1B1"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvWiki"
+            app:layout_constraintStart_toEndOf="@+id/tvArticle"
+            app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
